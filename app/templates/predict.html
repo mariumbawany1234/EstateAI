@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>EstateAI Prediction</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+<div class="logo">
+🏠 EstateAI
+</div>
+
+<a href="/">
+Home
+</a>
+
+</nav>
+
+
+
+<section class="prediction">
+
+
+<h2>Estimated House Price</h2>
+
+<h1>${{ price }}</h1>
+
+<p>
+Enter property details to estimate value.
+</p>
+
+
+
+<form method="post" action="/predict">
+
+
+<input name="OverallQual"
+placeholder="Overall Quality (1-10)"
+required>
+
+
+<input name="GrLivArea"
+placeholder="Living Area sqft"
+required>
+
+
+<input name="YearBuilt"
+placeholder="Year Built"
+required>
+
+
+<input name="BedroomAbvGr"
+placeholder="Bedrooms"
+required>
+
+
+<input name="FullBath"
+placeholder="Bathrooms"
+required>
+
+
+<input name="GarageCars"
+placeholder="Garage Cars"
+required>
+
+
+<input name="TotalBsmtSF"
+placeholder="Basement Area"
+required>
+
+
+<input name="Fireplaces"
+placeholder="Fireplaces"
+required>
+
+
+<input name="Neighborhood"
+placeholder="Neighborhood e.g. NAmes"
+required>
+
+
+<button>
+Predict Price
+</button>
+
+
+</form>
+
+
+
+{% if prediction %}
+
+<div class="result">
+
+<h2>
+Estimated Price
+</h2>
+
+<h1>
+{{prediction}}
+</h1>
+
+<p>
+Random Forest AI Model
+</p>
+
+</div>
+
+{% endif %}
+
+
+
+</section>
+
+
+</body>
+
+</html>

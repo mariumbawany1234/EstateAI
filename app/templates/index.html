@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EstateAI | AI House Price Predictor</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            <i class="fa-solid fa-house"></i>
+            EstateAI
+        </h1>
+
+        <h2>
+            AI-Powered House Price Prediction
+        </h2>
+
+        <p>
+            Predict real estate prices using Machine Learning
+            with intelligent property analysis.
+        </p>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+    <section class="prediction-card">
+
+
+        <h2 class="form-title">
+            Enter Property Details
+        </h2>
+
+
+        <form action="/predict" method="post">
+
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-star"></i>
+                    Overall Quality (1-10)
+                </label>
+
+                <input
+                    type="number"
+                    name="OverallQual"
+                    min="1"
+                    max="10"
+                    placeholder="Example: 8"
+                    required>
+            </div>
+
+
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-ruler-combined"></i>
+                    Living Area (sq ft)
+                </label>
+
+                <input
+                    type="number"
+                    name="GrLivArea"
+                    placeholder="Example: 2000"
+                    required>
+
+            </div>
+
+
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-calendar"></i>
+                    Year Built
+                </label>
+
+                <input
+                    type="number"
+                    name="YearBuilt"
+                    placeholder="Example: 2005"
+                    required>
+
+            </div>
+
+
+
+            <div class="grid">
+
+
+                <div class="input-group">
+
+                    <label>
+                        <i class="fa-solid fa-bed"></i>
+                        Bedrooms
+                    </label>
+
+                    <input
+                        type="number"
+                        name="BedroomAbvGr"
+                        placeholder="3"
+                        required>
+
+                </div>
+
+
+
+                <div class="input-group">
+
+                    <label>
+                        <i class="fa-solid fa-bath"></i>
+                        Bathrooms
+                    </label>
+
+                    <input
+                        type="number"
+                        name="FullBath"
+                        placeholder="2"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+
+
+            <div class="grid">
+
+
+                <div class="input-group">
+
+                    <label>
+                        <i class="fa-solid fa-car"></i>
+                        Garage Cars
+                    </label>
+
+                    <input
+                        type="number"
+                        name="GarageCars"
+                        placeholder="2"
+                        required>
+
+                </div>
+
+
+
+                <div class="input-group">
+
+                    <label>
+                        <i class="fa-solid fa-warehouse"></i>
+                        Basement Area
+                    </label>
+
+                    <input
+                        type="number"
+                        name="TotalBsmtSF"
+                        placeholder="1000"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-fire"></i>
+                    Fireplaces
+                </label>
+
+                <input
+                    type="number"
+                    name="Fireplaces"
+                    placeholder="1"
+                    required>
+
+            </div>
+
+
+
+
+            <div class="input-group">
+
+                <label>
+                    <i class="fa-solid fa-location-dot"></i>
+                    Neighborhood
+                </label>
+
+
+                <select name="Neighborhood" required>
+
+                    <option value="NAmes">NAmes</option>
+                    <option value="CollgCr">CollgCr</option>
+                    <option value="OldTown">OldTown</option>
+                    <option value="Edwards">Edwards</option>
+                    <option value="Sawyer">Sawyer</option>
+                    <option value="NridgHt">NridgHt</option>
+                    <option value="Somerst">Somerst</option>
+                    <option value="Gilbert">Gilbert</option>
+                    <option value="NWAmes">NWAmes</option>
+                    <option value="BrkSide">BrkSide</option>
+
+                </select>
+
+            </div>
+
+
+
+            <button type="submit">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Predict Price
+
+            </button>
+
+
+        </form>
+
+
+    </section>
+
+
+
+
+    {% if price %}
+
+    <section class="result-card">
+
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+
+        <h2>
+            Estimated House Price
+        </h2>
+
+
+        <h1>
+            ${{ price }}
+        </h1>
+
+
+        <p>
+            AI model prediction based on your property features.
+        </p>
+
+
+    </section>
+
+    {% endif %}
+
+
+
+</main>
+
+
+
+
+<footer>
+
+    <p>
+        Built with ❤️ by 
+        <strong>Marium Bawany</strong>
+    </p>
+
+
+    <p>
+
+        <a href="https://github.com/mariumbawany1234"
+           target="_blank">
+
+            <i class="fa-brands fa-github"></i>
+            GitHub
+
+        </a>
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
