@@ -1,30 +1,32 @@
+from pathlib import Path
+
 from fastapi import FastAPI, Request, Form
-from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 from app.predictor import predict_house_price
-
 
 app = FastAPI(
     title="EstateAI House Price Predictor"
 )
 
-
-# Static files (CSS)
+# Static Files
 app.mount(
     "/static",
     StaticFiles(directory="app/static"),
     name="static"
 )
 
+# Templates
+BASE_DIR = Path(__file__).resolve().parent
 
-# HTML templates
 templates = Jinja2Templates(
-    directory="app/templates"
+    directory=str(BASE_DIR / "templates")
 )
 
 
-# Home page
+# ---------------- HOME ---------------- #
+
 @app.get("/")
 def home(request: Request):
 
@@ -32,12 +34,15 @@ def home(request: Request):
         request=request,
         name="index.html",
         context={
-            "prediction": None
+            "price": None,
+            "model": None,
+            "accuracy": None
         }
     )
 
 
-# Prediction route
+# ---------------- PREDICT ---------------- #
+
 @app.post("/predict")
 def predict(
     request: Request,
@@ -53,7 +58,6 @@ def predict(
     Neighborhood: str = Form(...)
 ):
 
-    # Create input dictionary
     house_data = {
         "OverallQual": OverallQual,
         "GrLivArea": GrLivArea,
@@ -66,18 +70,21 @@ def predict(
         "Neighborhood": Neighborhood
     }
 
-
-    # Run ML pipeline
+    # Predict house price
     price = predict_house_price(house_data)
 
+    # Format result
+    formatted_price = f"${price:,.2f}"
 
-    formatted_price = f"{price:,.2f}"
-
+    model_name = "Random Forest Regressor"
+    accuracy = "R² Score: 0.89"
 
     return templates.TemplateResponse(
-    request=request,
-    name="index.html",
-    context={
-        "price": formatted_price
-    }
-)
+        request=request,
+        name="index.html",
+        context={
+            "price": formatted_price,
+            "model": model_name,
+            "accuracy": accuracy
+        }
+    )

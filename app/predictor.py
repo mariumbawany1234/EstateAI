@@ -1,34 +1,41 @@
-import pickle
+from pathlib import Path
+import joblib
 import pandas as pd
 
 
-# Load pipeline
-with open("app/estateai_pipeline.pkl", "rb") as f:
-    pipeline = pickle.load(f)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+MODEL_PATH = BASE_DIR / "models" / "estateai_pipeline.pkl"
 
 
-def predict_house_price(input_data):
-
-    # convert input to dataframe
-    df = pd.DataFrame([input_data])
+pipeline = joblib.load(MODEL_PATH)
 
 
-    # columns required by pipeline
-    required_columns = pipeline.feature_names_in_
+
+# Features used during training
+TRAIN_FEATURES = pipeline.named_steps["preprocessor"].feature_names_in_
 
 
-    # add missing columns
-    for col in required_columns:
+
+def predict_house_price(house_data):
+
+    df = pd.DataFrame([house_data])
+
+
+    # Add missing training columns
+    for col in TRAIN_FEATURES:
+
         if col not in df.columns:
+
             df[col] = 0
 
 
-    # keep correct order
-    df = df[required_columns]
+
+    # Keep same order as training
+    df = df[TRAIN_FEATURES]
 
 
-    # prediction
     prediction = pipeline.predict(df)
 
 
-    return round(float(prediction[0]), 2)
+    return float(prediction[0])

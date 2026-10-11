@@ -2,312 +2,463 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EstateAI | AI House Price Predictor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/static/style.css">
+<title>EstateAI | Machine Learning House Price Predictor</title>
 
-    <!-- Icons -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="/static/style.css">
 
 </head>
 
+
 <body>
 
-<header class="hero">
 
-    <div class="hero-content">
+<!-- NAVBAR -->
 
-        <h1>
-            <i class="fa-solid fa-house"></i>
-            EstateAI
-        </h1>
+<nav class="navbar">
 
-        <h2>
-            AI-Powered House Price Prediction
-        </h2>
+<div class="logo">
+    🏠 EstateAI
+</div>
 
-        <p>
-            Predict real estate prices using Machine Learning
-            with intelligent property analysis.
-        </p>
 
-    </div>
+<div class="nav-links">
 
-</header>
+<a href="#predict">
+    Demo
+</a>
 
+<a href="https://github.com/mariumbawany1234" target="_blank">
+    GitHub
+</a>
 
-<main class="container">
+</div>
 
+</nav>
 
-    <section class="prediction-card">
 
 
-        <h2 class="form-title">
-            Enter Property Details
-        </h2>
+<!-- HERO -->
 
 
-        <form action="/predict" method="post">
+<section class="hero">
 
 
-            <div class="input-group">
+<div class="hero-text">
 
-                <label>
-                    <i class="fa-solid fa-star"></i>
-                    Overall Quality (1-10)
-                </label>
 
-                <input
-                    type="number"
-                    name="OverallQual"
-                    min="1"
-                    max="10"
-                    placeholder="Example: 8"
-                    required>
-            </div>
+<p class="tag">
+    AI • MACHINE LEARNING • FASTAPI
+</p>
 
 
+<h1>
 
-            <div class="input-group">
+Predict House Prices
+<br>
 
-                <label>
-                    <i class="fa-solid fa-ruler-combined"></i>
-                    Living Area (sq ft)
-                </label>
+<span>with Artificial Intelligence</span>
 
-                <input
-                    type="number"
-                    name="GrLivArea"
-                    placeholder="Example: 2000"
-                    required>
+</h1>
 
-            </div>
 
 
+<p>
 
-            <div class="input-group">
+EstateAI is an end-to-end Machine Learning application
+that predicts property prices using a trained regression
+pipeline and FastAPI backend.
 
-                <label>
-                    <i class="fa-solid fa-calendar"></i>
-                    Year Built
-                </label>
+</p>
 
-                <input
-                    type="number"
-                    name="YearBuilt"
-                    placeholder="Example: 2005"
-                    required>
 
-            </div>
 
+<div class="buttons">
 
 
-            <div class="grid">
+<a href="#predict">
 
+<button>
+Try Prediction
+</button>
 
-                <div class="input-group">
+</a>
 
-                    <label>
-                        <i class="fa-solid fa-bed"></i>
-                        Bedrooms
-                    </label>
 
-                    <input
-                        type="number"
-                        name="BedroomAbvGr"
-                        placeholder="3"
-                        required>
 
-                </div>
+<a href="https://github.com/mariumbawany1234" target="_blank">
 
+<button class="secondary">
+View Code
+</button>
 
+</a>
 
-                <div class="input-group">
 
-                    <label>
-                        <i class="fa-solid fa-bath"></i>
-                        Bathrooms
-                    </label>
+</div>
 
-                    <input
-                        type="number"
-                        name="FullBath"
-                        placeholder="2"
-                        required>
 
-                </div>
+</div>
 
 
-            </div>
 
 
 
+<div class="ai-card">
 
-            <div class="grid">
 
+<div class="floating">
 
-                <div class="input-group">
+🤖
 
-                    <label>
-                        <i class="fa-solid fa-car"></i>
-                        Garage Cars
-                    </label>
+</div>
 
-                    <input
-                        type="number"
-                        name="GarageCars"
-                        placeholder="2"
-                        required>
 
-                </div>
+<h3>
+Machine Learning Model
+</h3>
 
 
+<p>
+Scikit-Learn Regression Pipeline
+</p>
 
-                <div class="input-group">
 
-                    <label>
-                        <i class="fa-solid fa-warehouse"></i>
-                        Basement Area
-                    </label>
+<div class="line"></div>
 
-                    <input
-                        type="number"
-                        name="TotalBsmtSF"
-                        placeholder="1000"
-                        required>
 
-                </div>
+<div class="stats">
 
 
-            </div>
+<div>
 
+<h2>
+89%
+</h2>
 
+<p>
+R² Score
+</p>
 
-            <div class="input-group">
+</div>
 
-                <label>
-                    <i class="fa-solid fa-fire"></i>
-                    Fireplaces
-                </label>
 
-                <input
-                    type="number"
-                    name="Fireplaces"
-                    placeholder="1"
-                    required>
+<div>
 
-            </div>
+<h2>
+ML
+</h2>
 
+<p>
+Powered
+</p>
 
 
+</div>
 
-            <div class="input-group">
 
-                <label>
-                    <i class="fa-solid fa-location-dot"></i>
-                    Neighborhood
-                </label>
+</div>
 
 
-                <select name="Neighborhood" required>
+</div>
 
-                    <option value="NAmes">NAmes</option>
-                    <option value="CollgCr">CollgCr</option>
-                    <option value="OldTown">OldTown</option>
-                    <option value="Edwards">Edwards</option>
-                    <option value="Sawyer">Sawyer</option>
-                    <option value="NridgHt">NridgHt</option>
-                    <option value="Somerst">Somerst</option>
-                    <option value="Gilbert">Gilbert</option>
-                    <option value="NWAmes">NWAmes</option>
-                    <option value="BrkSide">BrkSide</option>
 
-                </select>
 
-            </div>
+</section>
 
 
 
-            <button type="submit">
 
-                <i class="fa-solid fa-chart-line"></i>
 
-                Predict Price
+<!-- FEATURES -->
 
-            </button>
 
+<section class="features">
 
-        </form>
 
+<h2>
+Built With Modern AI Stack
+</h2>
 
-    </section>
 
+<div class="cards">
 
 
+<div>
 
-    {% if price %}
+<h3>
+🐍 Python
+</h3>
 
-    <section class="result-card">
+<p>
+Data processing and ML development
+</p>
 
+</div>
 
-        <div class="success-icon">
 
-            <i class="fa-solid fa-circle-check"></i>
+<div>
 
-        </div>
+<h3>
+⚡ FastAPI
+</h3>
 
+<p>
+High performance prediction API
+</p>
 
-        <h2>
-            Estimated House Price
-        </h2>
+</div>
 
 
-        <h1>
-            ${{ price }}
-        </h1>
 
+<div>
 
-        <p>
-            AI model prediction based on your property features.
-        </p>
+<h3>
+📊 Scikit-Learn
+</h3>
 
+<p>
+Regression pipeline deployment
+</p>
 
-    </section>
+</div>
 
-    {% endif %}
 
+</div>
 
 
-</main>
+</section>
+
+
+
+
+
+<!-- PROJECT FLOW -->
+
+
+<section class="workflow">
+
+
+<h2>
+How EstateAI Works
+</h2>
+
+
+<div class="steps">
+
+
+<div>
+01
+<br>
+Data Cleaning
+</div>
+
+
+<div>
+02
+<br>
+Feature Engineering
+</div>
+
+
+<div>
+03
+<br>
+Model Training
+</div>
+
+
+<div>
+04
+<br>
+Prediction API
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- PREDICTION -->
+
+
+<section id="predict" class="prediction">
+
+
+<h2>
+Try AI Prediction
+</h2>
+
+
+
+<form action="/predict" method="post">
+
+
+<input name="OverallQual"
+placeholder="Overall Quality (1-10)"
+type="number"
+required>
+
+
+
+<input name="GrLivArea"
+placeholder="Living Area"
+type="number"
+required>
+
+
+
+<input name="YearBuilt"
+placeholder="Year Built"
+type="number"
+required>
+
+
+
+<input name="BedroomAbvGr"
+placeholder="Bedrooms"
+type="number"
+required>
+
+
+
+<input name="FullBath"
+placeholder="Bathrooms"
+type="number"
+required>
+
+
+
+<input name="GarageCars"
+placeholder="Garage Capacity"
+type="number"
+required>
+
+
+
+<input name="TotalBsmtSF"
+placeholder="Basement Area"
+type="number"
+required>
+
+
+
+<input name="Fireplaces"
+placeholder="Fireplaces"
+type="number"
+required>
+
+
+
+
+<select name="Neighborhood" required>
+
+<option value="">
+Select Neighborhood
+</option>
+
+<option value="NAmes">
+NAmes
+</option>
+
+<option value="CollgCr">
+CollgCr
+</option>
+
+
+<option value="NridgHt">
+NridgHt
+</option>
+
+
+<option value="OldTown">
+OldTown
+</option>
+
+
+</select>
+
+
+
+
+<button>
+Generate Prediction
+</button>
+
+
+</form>
+
+
+
+
+
+
+{% if price %}
+
+
+<div class="result">
+
+
+<h2>
+Estimated Price
+</h2>
+
+
+<h1>
+{{price}}
+</h1>
+
+
+<p>
+Model:
+{{model}}
+</p>
+
+
+<p>
+Accuracy:
+{{accuracy}}
+</p>
+
+
+</div>
+
+
+{% endif %}
+
+
+
+</section>
+
+
 
 
 
 
 <footer>
 
-    <p>
-        Built with ❤️ by 
-        <strong>Marium Bawany</strong>
-    </p>
+
+<h3>
+EstateAI
+</h3>
 
 
-    <p>
+<p>
+Built by Marium Bawany | AI & Data Science
+</p>
 
-        <a href="https://github.com/mariumbawany1234"
-           target="_blank">
-
-            <i class="fa-brands fa-github"></i>
-            GitHub
-
-        </a>
-
-    </p>
 
 </footer>
+
 
 
 </body>
